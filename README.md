@@ -1,4 +1,4 @@
-![Diiferent Mood](https://github.com/user-attachments/assets/3eac7b69-5658-4e23-a8a1-4d257441e427)# 📖 Compliment Generator
+# 📖 Compliment Generator
 
 A fun and interactive web application that generates personalized compliments based on the selected mood and gender. The app features a charming 3D envelope animation that reveals compliments in an engaging and visually appealing way.
 
