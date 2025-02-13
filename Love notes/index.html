@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Notes Compliment Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Page 1: Home -->
+<div class="page" id="page1">
+    <h2>Welcome to Love Notes 💌</h2>
+    <label for="gender">Are you:</label>
+    <select id="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+    <br/>
+    <label for="name">What's your name?</label>
+    <input type="text" id="name" placeholder="Enter your name">
+    <br/>
+    <button class="button" onclick="nextPage()">Next ➡️</button>
+</div>
+
+<!-- Page 2: Compliments -->
+<div class="page hidden" id="page2">
+    <div id="compliment">Hey there!</div>
+    <label for="mood">What's your mood?</label>
+    <select id="mood">
+        <option value="cute">Cute 🐱</option>
+        <option value="angry">Angry 😡</option>
+        <option value="happy">Happy 😊</option>
+        <option value="romantic">Romantic ❤️</option>
+    </select>
+    <br/>
+    <button class="button" onclick="redirectToEnvelope()">Get Compliment 🎯</button>
+</div>
+
+<!-- Page 3: Envelope Animation -->
+<div class="page hidden" id="page3">
+    <div class="envelope-container" onclick="toggleEnvelope()">
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="letter">
+                <p id="finalCompliment"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+function redirectToEnvelope() {
+    const mood = document.getElementById('mood').value;
+    let compliment = "";
+    switch (mood) {
+        case "cute":
+            compliment = "You're as cute as a kitten playing with yarn! 🐱";
+            break;
+        case "angry":
+            compliment = "Even when you're mad, you have a charm that can't be ignored! 😡❤️";
+            break;
+        case "happy":
+            compliment = "Your smile can brighten even the cloudiest days! 😊";
+            break;
+        case "romantic":
+            compliment = "You're a romantic dream come true! 💖";
+            break;
+        default:
+            compliment = "You're awesome!";
+    }
+    localStorage.setItem('compliment', compliment);
+    window.location.href = "envelope.html";
+}
+
+// Reveal the compliment on the envelope page
+window.addEventListener('DOMContentLoaded', () => {
+    const complimentText = localStorage.getItem('compliment');
+    if (complimentText) {
+        document.getElementById('finalCompliment').textContent = complimentText;
+    }
+});
+
+function toggleEnvelope() {
+    const envelope = document.querySelector('.envelope .flap');
+    envelope.classList.toggle('open');
+    const letter = document.querySelector('.envelope .letter');
+    letter.classList.toggle('show');
+}
+</script>
+</body>
+</html>
